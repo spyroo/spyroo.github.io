@@ -1,13 +1,16 @@
 $(document).ready(function () {
-    $('body.hidden').fadeIn(1200).removeClass('hidden');
-    setCookie("visited", "true", 1);
-    var test = getCookie("visited");
-    alert(test);
+    var fade = getCookie("visited");
+    if(fade != "true"){
+        $('body.hidden').fadeIn(1200).removeClass('hidden');
+        setCookie("visited", "true", 1);
+    }else{
+        $('body.hidden').removeClass('hidden');
+    }
 });
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exmin) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    d.setTime(d.getTime() + (exmin*60*1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
 }
